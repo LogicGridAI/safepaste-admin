@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SafePaste Enterprise — Admin Dashboard
 
-## Getting Started
+Enterprise control panel for IT directors managing SafePaste Enterprise deployments across their organization. Hosted at [admin.safepaste.app](https://admin.safepaste.app).
 
-First, run the development server:
+SafePaste Enterprise automatically redacts secrets, PII, and sensitive data from employee clipboards before they reach unintended destinations — without disrupting workflows. This dashboard gives IT and compliance teams full visibility and control over that process.
+
+---
+
+## Features
+
+- **Dashboard** — at-a-glance metrics for secrets redacted, high-risk events blocked, active users today, and seat utilization
+- **Seat management** — provision and remove employee seats, organized by department (Finance, HR, IT, Legal)
+- **Department policy profiles** — configure which detection patterns are active per department; enable `CREDIT_CARD` for Finance, `API_KEY` for IT, `US_SSN` for HR, and so on
+- **NDA keyword management** — push custom redaction terms (e.g. "Project Nexus", "Acquisition Target") to all seats instantly
+- **Audit log** — searchable log with filters for date range, department, pattern type, and action (BLOCKED / REDACTED / ALLOWED)
+- **CSV export** — one-click compliance export for SOC 2, HIPAA, and ISO 27001 audits
+- **Deployment health** — monitor extension sync status, policy push state, audit streaming, and SSO connectivity
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS |
+| Components | shadcn/ui |
+| Icons | lucide-react |
+
+---
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The root route redirects to `/dashboard`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route | Description |
+|---|---|
+| `/login` | Admin login |
+| `/dashboard` | Metrics overview and recent events |
+| `/seats` | Seat provisioning and management |
+| `/policies` | Department detection profiles and NDA keywords |
+| `/audit` | Full audit log with filters and CSV export |
+| `/settings` | Org config, notifications, SSO, and API key |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Part of SafePaste Enterprise
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This admin dashboard is one component of the SafePaste Enterprise platform:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Product | Link |
+|---|---|
+| Marketing site | [safepaste.app](https://safepaste.app) |
+| Browser extension | [github.com/LogicGridAI/safepaste](https://github.com/LogicGridAI/safepaste) |
+| React SDK | [github.com/LogicGridAI/safepaste-sdk](https://github.com/LogicGridAI/safepaste-sdk) |
+| Python package | `pip install safepaste-enterprise` |
+| Docker image | `docker pull logicgridai/safepaste` |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by [LogicGrid AI](https://safepaste.app)
